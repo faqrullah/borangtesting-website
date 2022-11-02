@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <link rel="stylesheet" href="style.css">
+</head>
+<center><body<h1><b>BORANG TESTING</b></h1></center>
+
+<div id="whatToPrint" style="width: 500px;"
+
+<p></p>
+Date: <script> document.write(new Date().toLocaleDateString()); </script>
+
+<p></p>
+Time: <span id="datetime"></span>
+<script>
+var dt = new Date();
+document.getElementById("datetime").innerHTML = dt.toLocaleTimeString();
+</script>
+<p></p>
+<p></p>
+    <div id="whatToPrint"
+    <p><label>number</label></p>
+<input>
+<p><label>pkt</label></p>
+<input>
+<p><label>nama</label></p>
+<input>
+<p><label>unit</label></p>
+<input>
+<p><label>dari mana</label></p>
+<input>
+<p><label>kan ke mana</label></p>
+<input>
+<br>
+<p><label for="SSC">A. Semua binatang liar membahayakan.</label></p>
+<input type="radio" name="gender" value="yes"> yes
+<input type="radio" name="gender" value="no"> no
+<br>
+<br>
+<label for="SSC">B. Binatang yang hidup di hutan tidak membahayakan.</label>
+<br>
+<br>
+<input type="radio" name="indoor" value="yes"> yes
+<input type="radio" name="indoor" value="no"> no
+<br>
+<br>
+<label for="SSC">C. Semua binatang yang hidup di hutan tidak membahayakan.</label>
+<br>
+<br>
+<input type="radio" name="outdoor"> yes
+<input type="radio" name="outdoor"> no
+<br>
+<br>
+<label for="SSC">D. Ada binatang membahayakan yang hidup di hutan.</label>
+<br>
+<br>
+<input type="radio" name="black"> yes
+<input type="radio" name="black"> no
+<br>
+<br>
+<!--<img src="https://th.bing.com/th/id/OIP.wdkLi0wAUuLf5gdNFincPwHaEd?pid=ImgDet&rs=1"/>-->
+
+<a href="javascript:generatePDF()" id="downloadButton">Click to download</a>
+
+
+
+
+</div>
+    
+<script>
+    async function generatePDF() {
+        document.getElementById("downloadButton").innerHTML = "Currently downloading, please wait";
+
+        //Downloading
+        var downloading = document.getElementById("whatToPrint");
+        var doc = new jsPDF('l', 'pt');
+
+        await html2canvas(downloading, {
+            //allowTaint: true,
+            //useCORS: true,
+            width: 530
+        }).then((canvas) => {
+            //Canvas (convert to PNG)
+            doc.addImage(canvas.toDataURL("image/png"), 'PNG', 5, 5, 500, 200);
+        })
+
+        doc.save("Document.pdf");
+
+        //End of downloading
+
+        document.getElementById("downloadButton").innerHTML = "Click to download";
+    }
+</script>
+</body>
+</html>
+
+<!--
+
+HTML + CSS -> PNG (html2canvas)
+PNG -> Add to PDF (jsPDF)
+Download PDF (jsPDF)
+
+-->
